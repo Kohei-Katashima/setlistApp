@@ -1,7 +1,7 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +14,6 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::post('/register', 'Auth\RegisterController@register')->name('register');
-Route::post('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-// ログインユーザー
-Route::get('/user', fn() => Auth::user())->name('user');
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
