@@ -18,3 +18,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/setlists/{id}/songs', 'App\Http\Controllers\SongController@index')->name('songs.index');
+Route::get('/setlists/create', 'App\Http\Controllers\SetlistController@showCreateForm')->name('setlists.create');
+Route::post('/setlists/create', 'App\Http\Controllers\SetlistController@create');
