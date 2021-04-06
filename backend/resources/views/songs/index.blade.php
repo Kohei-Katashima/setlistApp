@@ -26,7 +26,7 @@
             <div class="panel-heading"> セットリスト</div>
             <div class="panel-body">
               <div class="text-right">
-                <a href="{{ route('songs.create', ['id' => $current_setlist_id]) }}" class="btn btn-default btn-block">
+                <a href="{{ route('songs.create', ['id' => $current_setlist->id]) }}" class="btn btn-default btn-block">
                   曲を追加する
                 </a>
               </div>
@@ -46,7 +46,7 @@
                   <td>{{ $song->band_name }}</td>
                   <td>{{ $song->title }}</td>
                   <td>{{ $song->time }}</td>
-                  <td><a href="#">編集</a></td>
+                  <td><a href="{{ route('songs.edit', ['id' => $song->setlist_id, 'song_id' => $song->id]) }}">編集</a></td>
                 </tr>
                 @endforeach
               </tbody>
