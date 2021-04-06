@@ -25,4 +25,14 @@ class SongController extends Controller
             'songs' => $songs,
         ]);
     }
+
+    /**
+     * GET /setlists/{id}/songs/create
+     */
+    public function showCreateForm(int $id)
+    {
+        return view('songs/create', [
+            'setlist_id' => $id
+        ]);
+    }
 }
