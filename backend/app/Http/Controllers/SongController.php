@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Setlist;
 use App\Models\Song;
+use App\Http\Requests\CreateSong;
 
 class SongController extends Controller
 {
@@ -33,6 +34,22 @@ class SongController extends Controller
     {
         return view('songs/create', [
             'setlist_id' => $id
+        ]);
+    }
+
+    public function create(int $id, CreateSong $request)
+    {
+        $current_setlist = Setlist::find($id);
+
+        $song = new Song();
+        $song->band_name = $request->band_name;
+        $song->title = $request->title;
+        $song->time = $request->time;
+
+        $current_setlist->songs()->save($song);
+
+        return redirect()->route('songs.index', [
+            'id' => $current_setlist->id,
         ]);
     }
 }

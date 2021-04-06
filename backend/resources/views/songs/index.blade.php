@@ -26,7 +26,7 @@
             <div class="panel-heading"> セットリスト</div>
             <div class="panel-body">
               <div class="text-right">
-                <a href="#" class="btn btn-default btn-block">
+                <a href="{{ route('songs.create', ['id' => $current_setlist_id]) }}" class="btn btn-default btn-block">
                   曲を追加する
                 </a>
               </div>
