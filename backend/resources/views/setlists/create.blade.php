@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <title>SetList App</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
+
 <body>
   <header>
     <nav class="my-navbar">
@@ -20,11 +22,20 @@
           <nav class="panel panel-default">
             <div class="panel-heading">フォルダを追加する</div>
             <div class="panel-body">
+              @if($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach($errors->all() as $message)
+                  <li>{{ $message }}</li>
+                  @endforeach
+                </ul>
+              </div>
+              @endif
               <form action="{{ route('setlists.create') }}" method="post">
                 @csrf
                 <div class="form-group">
                   <label for="title">フォルダ名</label>
-                  <input type="text" class="form-control" name="title" id="title" />
+                  <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}"/>
                 </div>
                 <div class="text-right">
                   <button type="submit" class="btn btn-primary">送信</button>
@@ -37,4 +48,5 @@
     </div>
   </main>
 </body>
+
 </html>
