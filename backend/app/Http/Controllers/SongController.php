@@ -5,17 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Setlist;
 use App\Models\Song;
+use App\Models\User;
 use App\Http\Requests\CreateSong;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
     //
     public function index(int $id)
     {
-        $setlists = Setlist::all();
+        $user = Auth::user()->setlists();
 
+        // $set = Setlist::with('users');
+
+        $setlists = $user->get();
+
+        // $setlists = $set->get();
         // 選ばれたフォルダを取得する
         $current_setlist = Setlist::find($id);
+
+        if (is_null($current_setlist)) {
+            abort(404);
+        }
 
         // 選ばれたフォルダに紐づく曲を取得する
         $songs = $current_setlist->songs()->get();

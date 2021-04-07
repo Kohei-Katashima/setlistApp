@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSetlist;
 use App\Models\Setlist;
+use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SetlistController extends Controller
 {
@@ -16,12 +18,16 @@ class SetlistController extends Controller
 
     public function create(CreateSetlist $request)
     {
+        $user = Auth::user()->setlists();
         // セットリストモデルのインスタンスを作成する
         $setlist = new Setlist();
         // タイトルに入力値を代入する
         $setlist->title = $request->title;
-        // インスタンスの状態をデータベースに書き込む
-        $setlist->save();
+        // ★ ユーザーに紐づけて保存
+        // $set = Setlist::with('users');
+        // $set->save($setlist);
+
+        $user->save($setlist);
 
         return redirect()->route('songs.index', [
             'id' => $setlist->id,

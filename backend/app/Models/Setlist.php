@@ -13,4 +13,8 @@ class Setlist extends Model
     {
         return $this->hasMany('App\Models\Song');
     }
+    public function users()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }
