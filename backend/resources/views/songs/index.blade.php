@@ -34,17 +34,17 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>アーティスト名</th>
                   <th>タイトル</th>
+                  <th>アーティスト名</th>
                   <th>時間</th>
                   <th></th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="sort">
                 @foreach($songs as $song)
                 <tr>
-                  <td>{{ $song->band_name }}</td>
                   <td>{{ $song->title }}</td>
+                  <td>{{ $song->band_name }}</td>
                   <td>{{ $song->time }}</td>
                   <td><a href="{{ route('songs.edit', ['id' => $song->setlist_id, 'song_id' => $song->id]) }}">編集</a></td>
                 </tr>
@@ -56,3 +56,10 @@
       </div>
     </div>
 @endsection
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+<script> 
+$(function() {
+    $('#sort').sortable();
+});
+</script>

@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
+
 Route::get('/setlists/{id}/songs', 'App\Http\Controllers\SongController@index')->name('songs.index');
 
 // リスト追加
@@ -30,3 +32,4 @@ Route::post('/setlists/{id}/songs/create', 'App\Http\Controllers\SongController@
 // 曲編集
 Route::get('/setlists/{id}/songs/{song_id}/edit', 'App\Http\Controllers\SongController@showEditForm')->name('songs.edit');
 Route::post('/setlists/{id}/songs/{song_id}/edit', 'App\Http\Controllers\SongController@edit');
+

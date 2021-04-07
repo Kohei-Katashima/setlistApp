@@ -15,5 +15,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "vue": "^2.6.12"
+    },
+    "dependencies": {
+        "sortablejs": "^1.13.0"
     }
 }
