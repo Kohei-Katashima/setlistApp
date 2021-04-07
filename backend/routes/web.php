@@ -33,3 +33,7 @@ Route::post('/setlists/{id}/songs/create', 'App\Http\Controllers\SongController@
 Route::get('/setlists/{id}/songs/{song_id}/edit', 'App\Http\Controllers\SongController@showEditForm')->name('songs.edit');
 Route::post('/setlists/{id}/songs/{song_id}/edit', 'App\Http\Controllers\SongController@edit');
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
